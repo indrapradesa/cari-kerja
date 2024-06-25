@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
             'name_package' => 'Premium',
             'max_administrator' => 8,
             'max_posting' => 0,
-            'max_highlight' => 99,
+            'max_highlight' => 7,
             'day_duration' => 30,
             'price' => 139000,
             'discount' => 0
