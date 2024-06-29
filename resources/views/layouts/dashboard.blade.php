@@ -15,8 +15,8 @@
     @include('partials.sidebar.admin-sidebar')
 
     {{-- main --}}
-    <div class="p-4 sm:ml-64">
-        <div class="container">
+    <div class="p-4 sm:ml-64 bg-slate-100 h-screen">
+        <div class="container mt-14">
             @yield('container')
         </div>
      </div>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id_invoice');
-            $table->foreignId('partner_id');
+            $table->foreignId('partner_unique_id');
             $table->string('nomor_reff', length: 100)->unique();
             $table->string('channel', length: 100);
             $table->string('photo_invoice', length: 255);
