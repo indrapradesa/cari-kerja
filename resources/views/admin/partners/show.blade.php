@@ -217,21 +217,21 @@
                 </div>
             </div>
         </div>
-
     </div>
+
     <div class="bg-white p-4 rounded-lg mt-8">
         <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
             <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab"
                 data-tabs-toggle="#default-tab-content" role="tablist">
                 <li class="me-2" role="presentation">
-                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile"
-                        type="button" role="tab" aria-controls="profile" aria-selected="false">Invoice</button>
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="invoice-tab" data-tabs-target="#invoice"
+                        type="button" role="tab" aria-controls="invoice" aria-selected="false">Invoice</button>
                 </li>
                 <li class="me-2" role="presentation">
                     <button
                         class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                        id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
-                        aria-controls="dashboard" aria-selected="false">Invoice History</button>
+                        id="histories-tab" data-tabs-target="#histories" type="button" role="tab"
+                        aria-controls="histories" aria-selected="false">Invoice History</button>
                 </li>
                 {{-- <li class="me-2" role="presentation">
                     <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Loker</button>
@@ -242,19 +242,13 @@
             </ul>
         </div>
         <div id="default-tab-content">
-            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel"
-                aria-labelledby="profile-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
-                        class="font-medium text-gray-800 dark:text-white">Profile tab's associated content</strong>.
-                    Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps
-                    classes to control the content visibility and styling.</p>
+            <div class="hidden p-4 rounded-lg " id="invoice" role="tabpanel"
+                aria-labelledby="invoice-tab">
+                @include('admin.partners.invoices')
             </div>
-            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
-                aria-labelledby="dashboard-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
-                        class="font-medium text-gray-800 dark:text-white">Dashboard tab's associated content</strong>.
-                    Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps
-                    classes to control the content visibility and styling.</p>
+            <div class="hidden p-4 rounded-lg" id="histories" role="tabpanel"
+                aria-labelledby="histories-tab">
+                @include('admin.partners.invoice-histories')
             </div>
             {{-- <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                 <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Settings tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>

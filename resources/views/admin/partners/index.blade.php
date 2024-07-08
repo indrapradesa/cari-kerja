@@ -1,10 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('container')
-    {{-- <div class="p-4 border-2 border-gray-200 border-solid rounded-lg dark:border-gray-700">
-
-
-</div> --}}
     <nav class="flex mb-4" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
             <li class="inline-flex items-center">
@@ -18,17 +14,6 @@
                     Home
                 </a>
             </li>
-            <li>
-                <div class="flex items-center">
-                    <svg class="w-3 h-3 text-gray-400 mx-1 rtl:rotate-180" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 9 4-4-4-4" />
-                    </svg>
-                    <a href="#"
-                        class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Projects</a>
-                </div>
-            </li>
             <li aria-current="page">
                 <div class="flex items-center">
                     <svg class="w-3 h-3 text-gray-400 mx-1 rtl:rotate-180" aria-hidden="true"
@@ -36,13 +21,13 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
                     </svg>
-                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Flowbite</span>
+                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Partners</span>
                 </div>
             </li>
         </ol>
     </nav>
-    <h2 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">Partner
-        management</h2>
+
+    <h3 class="mb-4 text-3xl font-bold dark:text-white">Data Partner</h3>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="p-4 pb-4 bg-white dark:bg-gray-900">
@@ -69,10 +54,10 @@
                         No.
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Nama Perusahan
+                        Nama Partner
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Tipe
+                        Tipe Partner
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Nomor Telephone
@@ -93,21 +78,36 @@
                             {{ $loop->iteration }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <a href="{{ route('admin.partners.show', $data->partner_unique) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            <a href="{{ route('admin.partners.show', $data->partner_unique) }}"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                 {{ $data->company_name }}
                             </a>
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $data->type_partner }}
+                            @if ($data->type_partner == 'umkm')
+                                <span>UMKM</span>
+                            @else
+                                <span>Company</span>
+                                <span></span>
+                            @endif
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $data->phone_number }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $data->package_id }}
+                            {{ $data->package->name_package }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $data->status }}
+                            @if ($data->status == 'active')
+                                <span
+                                    class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Active</span>
+                            @elseif ($data->status == 'suspend')
+                                <span
+                                    class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">Suspend</span>
+                            @else
+                                <span
+                                    class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Termind</span>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -115,5 +115,4 @@
             {{ $results->links() }}
         </table>
     </div>
-    <script src="https://unpkg.com/flowbite@latest/dist/flowbite.js"></script>
 @endsection

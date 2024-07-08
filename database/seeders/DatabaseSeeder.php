@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\CategoryJobVacancy;
+use App\Models\Invoice;
 use App\Models\Package;
 use App\Models\Partner;
 use App\Models\User;
@@ -130,6 +131,36 @@ class DatabaseSeeder extends Seeder
         CategoryJobVacancy::create([
             'name_category' => 'Kebersihan dan Keamanan',
             'slug' => 'kebersihan_dan_keamanan',
+        ]);
+
+        Invoice::create([
+            'partner_unique_id' => 123,
+            'nomor_reff' => 345,
+            'channel' => 'Bank BCA',
+            'periode' => '2024-04-01',
+            'paid_date' => '2024-05-01',
+            'amount' => 130000,
+            'status' => 'paid'
+        ]);
+
+        Invoice::create([
+            'partner_unique_id' => 123,
+            'nomor_reff' => 123242876,
+            'channel' => 'Bank BCA',
+            'periode' => '2024-05-01',
+            'paid_date' => '2024-06-01',
+            'amount' => 130000,
+            'status' => 'paid'
+        ]);
+
+        Invoice::create([
+            'partner_unique_id' => 123,
+            'nomor_reff' => 123247545,
+            'channel' => null,
+            'periode' => '2024-06-01',
+            'paid_date' => null,
+            'amount' => 130000,
+            'status' => 'unpaid'
         ]);
     }
 }
