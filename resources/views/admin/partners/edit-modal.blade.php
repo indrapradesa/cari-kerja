@@ -16,7 +16,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="{{ route('admin.partners.update', $partner->partner_unique) }}" method="POST" class="p-4 md:p-5">
+            <form action="{{ route('admin.partners.update', $partner->partner_uniques) }}" method="POST" class="p-4 md:p-5">
                 @csrf
                 @method('patch')
                 <div class="grid gap-4 mb-4 grid-cols-2">
@@ -24,9 +24,13 @@
                         <label for="company_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name Partner</label>
                         <input type="text" name="company_name" id="company_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $partner->company_name }}">
                     </div>
+                    <div class="col-span-2">
+                        <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
+                        <input type="text" name="address" id="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $partner->address }}">
+                    </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $partner->email }}">
+                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ $partner->employer->email }}">
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
@@ -34,19 +38,19 @@
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="link_instagram" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link Instagram</label>
-                        <input type="number" name="link_instagram" id="link_instagram" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Link Intagram" value="{{ $partner->link_instagram }}">
+                        <input type="text" name="link_instagram" id="link_instagram" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Link Intagram" value="{{ $partner->link_instagram }}">
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="link_facebook" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link Facebook</label>
-                        <input type="number" name="link_facebook" id="link_facebook" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Link Facebook" value="{{ $partner->link_facebook }}">
+                        <input type="text" name="link_facebook" id="link_facebook" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Link Facebook" value="{{ $partner->link_facebook }}">
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="link_linkedin" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link Linkedin</label>
-                        <input type="number" name="link_linkedin" id="link_linkedin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Link LinkedIn" value="{{ $partner->link_linkedin }}">
+                        <input type="text" name="link_linkedin" id="link_linkedin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Link LinkedIn" value="{{ $partner->link_linkedin }}">
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="link_web" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link Web</label>
-                        <input type="number" name="link_web" id="link_web" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Link Web" value="{{ $partner->link_web }}">
+                        <input type="text" name="link_web" id="link_web" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Link Web" value="{{ $partner->link_web }}">
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="type_partner" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category Partner</label>

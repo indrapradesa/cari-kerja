@@ -2,7 +2,9 @@
 
 namespace App\Interfaces\Admin;
 
-interface PartnerInterface
+use App\Interfaces\UserInterface;
+
+interface PartnerInterface extends UserInterface
 {
     public function getAll();
     public function store($request);

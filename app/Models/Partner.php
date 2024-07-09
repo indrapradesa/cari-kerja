@@ -16,18 +16,23 @@ class Partner extends Model
 
         $query->when($filters['search'] ?? false, fn($query, $search) =>
             $query->where('company_name', 'like', '%'.$search.'%')
-            ->orWhere('partner_unique', 'like', '%'.$search.'%')
+            ->orWhere('partner_uniques', 'like', '%'.$search.'%')
         );
 
     }
 
+    public function employer()
+    {
+        return $this->belongsTo(User::class, 'employer_id');
+    }
+
     public function package() :BelongsTo
     {
-        return $this->belongsTo(Package::class, 'package_id', 'id_package');
+        return $this->belongsTo(Package::class, 'package_id', 'id');
     }
 
     public function invoices() :HasMany
     {
-        return $this->hasMany(Invoice::class, 'partner_unique_id', 'partner_unique');
+        return $this->hasMany(Invoice::class, 'partner_id', 'id');
     }
 }

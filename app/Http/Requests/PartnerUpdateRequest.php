@@ -25,10 +25,15 @@ class PartnerUpdateRequest extends FormRequest
         return [
             'company_name' => 'required|string|max:100',
             'email' => 'required|email',
-            'phone_number' => 'required|integer|min:11',
             'type_partner' => 'required|in:umkm,company',
-            'status' => 'required|in:active,suspend,termint',
+            'phone_number' => 'required|integer|min:11',
+            'address' => 'required|string|max:100',
+            'link_instagram' => 'sometimes|nullable|regex:/^(https?:\/\/)?(www\.)?(instagram\.com)(\/[a-zA-Z0-9_.-]+)?/',
+            'link_facebook' => 'sometimes|nullable|regex:/^(https?:\/\/)?(www\.)?(facebook\.com)(\/[a-zA-Z0-9_.-]+)?/',
+            'link_linkedin' => 'sometimes|nullable|regex:/^(https?:\/\/)?(www\.)?(linkedin\.com)(\/[a-zA-Z0-9_.-]+)?/',
+            'link_web' => 'sometimes|nullable|regex:/^(https?:\/\/)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}([a-zA-Z0-9_.-\/]+)?/',
             'description' => 'nullable|string|max:100',
+            'status' => 'required|in:active,suspend,termint',
         ];
     }
 

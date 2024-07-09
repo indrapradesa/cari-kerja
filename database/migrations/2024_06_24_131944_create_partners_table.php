@@ -12,23 +12,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('partners', function (Blueprint $table) {
-            $table->increments('id_partner');
+            $table->id();
             $table->foreignId('package_id');
-            $table->string('partner_unique', length: 50)->unique();
+            $table->string('partner_uniques', length: 50)->unique();
             $table->string('company_name', length: 100);
             $table->string('slug', length: 100);
             $table->enum('type_partner', ['umkm', 'company']);
             $table->string('phone_number', length: 13)->unique();
-            $table->string('email', length: 100)->unique();
+            // $table->string('email', length: 100)->unique();
             $table->string('address', length: 255);
             $table->string('link_instagram', length: 255)->nullable()->unique();
             $table->string('link_facebook', length: 255)->nullable()->unique();
             $table->string('link_linkedin', length: 255)->nullable()->unique();
             $table->string('link_web', length: 255)->nullable()->unique();
             $table->string('description', length: 255)->nullable();
-            $table->enum('status',['active', 'suspend', 'temind']);
-            $table->softDeletes('deleted_at', precision: 0);
+            $table->enum('status',['active', 'suspend', 'temind'])->default('active');
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreignId('employer_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

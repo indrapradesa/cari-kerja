@@ -7,6 +7,7 @@ use App\Http\Requests\PartnerUpdateRequest;
 use App\Services\Admin\InvoiceService;
 use App\Services\Admin\PartnerService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class PartnerController extends Controller
 {
@@ -33,7 +34,8 @@ class PartnerController extends Controller
     {
         try {
             $partner = $this->partnerService->findPartner($partnerId);
-            $invoices = $this->invoiceService->findLastHistory($partnerId);
+            $invoices = $this->invoiceService->findLastHistory($partner->id);
+
             return view('admin.partners.show', compact('partner', 'invoices'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
@@ -55,6 +57,10 @@ class PartnerController extends Controller
         try {
             $this->partnerService->update($request->validated(), $partnerId);
             return redirect()->back()->with('success', 'Partner updated successfully!');
+        } catch (ValidationException $e) {
+            return redirect()->back()
+                             ->withErrors($e->validator)
+                             ->withInput();
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
