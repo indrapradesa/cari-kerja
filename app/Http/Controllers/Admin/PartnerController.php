@@ -48,7 +48,7 @@ class PartnerController extends Controller
             $partner = $this->partnerService->findPartner($partnerId);
             return view('admin.partners.edit', compact('partner'));
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->route('admin.partners.index')->with('error', $e->getMessage());
         }
     }
 
