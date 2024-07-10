@@ -13,6 +13,6 @@ class Invoice extends Model
 
     public function invoicePartner() :BelongsTo
     {
-        return $this->belongsTo(Partner::class, 'partner_unique_id', 'partner_unique');
+        return $this->belongsTo(Partner::class, 'partner_id', 'id');
     }
 }

@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('packages', function (Blueprint $table) {
-            $table->increments('id_package');
+            $table->id();
             $table->string('name_package', length: 100);
-            $table->integer('max_administrator');
+            $table->integer('max_administrator')->nullable();
             $table->integer('max_posting');
             $table->integer('max_highlight');
             $table->integer('day_duration');
             $table->double('price');
             $table->double('discount');
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\CategoryJobVacancy;
+use App\Models\CompanyJob;
 use App\Models\Invoice;
 use App\Models\Package;
 use App\Models\Partner;
@@ -24,26 +26,44 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        User::create([
+            'name' => 'Super Admin',
+            'email' => 'super@admin.com',
+            'password' => bcrypt('password')
+        ]);
+
+        User::create([
+            'name' => 'Test',
+            'email' => 'test.company@example.com',
+            'password' => bcrypt('password')
+        ]);
+
+        User::create([
+            'name' => 'Test Again',
+            'email' => 'test.company.again@example.com',
+            'password' => bcrypt('password')
+        ]);
+
         Partner::create([
             'package_id' => 1,
-            'partner_unique' => 123,
+            'partner_uniques' => 123,
+            'employer_id' => 2,
             'company_name' => 'Test Company',
             'slug' => 'test_company',
             'type_partner' => 'umkm',
             'phone_number' => '1232345743',
-            'email' => 'asdwd@example.com',
             'address' => 'surabaya',
             'status' => 'active',
         ]);
 
         Partner::create([
             'package_id' => 1,
-            'partner_unique' => 1231234,
+            'partner_uniques' => 1231234,
+            'employer_id' => 3,
             'company_name' => 'Test Company Again',
             'slug' => 'test_company-again',
             'type_partner' => 'umkm',
             'phone_number' => '123234571233',
-            'email' => 'aaeresdwd@example.com',
             'address' => 'malang',
             'status' => 'active',
         ]);
@@ -78,63 +98,63 @@ class DatabaseSeeder extends Seeder
             'discount' => 0
         ]);
 
-        CategoryJobVacancy::create([
+        Category::create([
             'name_category' => 'Logistik dan Produksi',
             'slug' => 'logistik_dan_produksi',
         ]);
 
-        CategoryJobVacancy::create([
+        Category::create([
             'name_category' => 'Sales dan Marketing',
             'slug' => 'sales_dan_marketing',
         ]);
 
-        CategoryJobVacancy::create([
+        Category::create([
             'name_category' => 'Administrasi dan Pegawai Kantor',
             'slug' => 'administrasi_dan_pegawawai_kantor',
         ]);
 
-        CategoryJobVacancy::create([
+        Category::create([
             'name_category' => 'Operasional dan IT',
             'slug' => 'operasional_dan_it',
         ]);
 
-        CategoryJobVacancy::create([
+        Category::create([
             'name_category' => 'Teknik dan Pengembangan Energi',
             'slug' => 'teknik_dan_pengembangan_energi',
         ]);
 
-        CategoryJobVacancy::create([
+        Category::create([
             'name_category' => 'Layanan Sosial dan Kesehatan',
             'slug' => 'layanan_sosial_dan_kesehatan',
         ]);
 
-        CategoryJobVacancy::create([
+        Category::create([
             'name_category' => 'Pendidikan dan Penelitian',
             'slug' => 'pendidikan_dan_penelitian',
         ]);
 
-        CategoryJobVacancy::create([
+        Category::create([
             'name_category' => 'FnB dan Pekerja Ritel',
             'slug' => 'fnb_dan_pekerja_ritel',
         ]);
 
-        CategoryJobVacancy::create([
+        Category::create([
             'name_category' => 'FnB dan Pekerja Ritel',
             'slug' => 'fnb_dan_pekerja_ritel',
         ]);
 
-        CategoryJobVacancy::create([
+        Category::create([
             'name_category' => 'Multimedia Kreatif dan Seni',
             'slug' => 'multimedia_kreatif_dan_seni',
         ]);
 
-        CategoryJobVacancy::create([
+        Category::create([
             'name_category' => 'Kebersihan dan Keamanan',
             'slug' => 'kebersihan_dan_keamanan',
         ]);
 
         Invoice::create([
-            'partner_unique_id' => 123,
+            'partner_id' => 1,
             'nomor_reff' => 345,
             'channel' => 'Bank BCA',
             'periode' => '2024-04-01',
@@ -144,7 +164,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Invoice::create([
-            'partner_unique_id' => 123,
+            'partner_id' => 1,
             'nomor_reff' => 123242876,
             'channel' => 'Bank BCA',
             'periode' => '2024-05-01',
@@ -154,13 +174,58 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Invoice::create([
-            'partner_unique_id' => 123,
+            'partner_id' => 1,
             'nomor_reff' => 123247545,
             'channel' => null,
             'periode' => '2024-06-01',
             'paid_date' => null,
             'amount' => 130000,
             'status' => 'unpaid'
+        ]);
+
+        CompanyJob::create([
+            'job_title' => 'Back-End',
+            'slug' => 'back_end',
+            'type_job' => 'WFH',
+            'location' => 'Malang',
+            'job_description' => 'test description',
+            'salary_min' => 3000000,
+            'salary_max' => 4000000,
+            'date_posted' => null,
+            'date_closing' => null,
+            'is_open' => false,
+            'partner_id' => 1,
+            'category_id' => 4
+        ]);
+
+        CompanyJob::create([
+            'job_title' => 'Front-End',
+            'slug' => 'front_end',
+            'type_job' => 'WFH',
+            'location' => 'Malang',
+            'job_description' => 'test description',
+            'salary_min' => 2500000,
+            'salary_max' => 3500000,
+            'date_posted' => null,
+            'date_closing' => null,
+            'is_open' => false,
+            'partner_id' => 1,
+            'category_id' => 4
+        ]);
+
+        CompanyJob::create([
+            'job_title' => 'UI/UX',
+            'slug' => 'ui_ux',
+            'type_job' => 'WFH',
+            'location' => 'Malang',
+            'job_description' => 'test description',
+            'salary_min' => 2300000,
+            'salary_max' => 3200000,
+            'date_posted' => null,
+            'date_closing' => null,
+            'is_open' => false,
+            'partner_id' => 1,
+            'category_id' => 4
         ]);
     }
 }

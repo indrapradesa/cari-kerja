@@ -17,17 +17,17 @@ class InvoiceRepository implements InvoiceInterface
 
     public function update($request, $partnerId)
     {
-        return $this->invoice->where('partner_unique_id', $partnerId)->update($request);
+        return $this->invoice->where('partner_id', $partnerId)->update($request);
     }
 
-    public function allHistories($partnerId)
+    public function allHistories($id)
     {
-        return $this->invoice->where('partner_unique_id', $partnerId)->get();
+        return $this->invoice->where('partner_id', $id)->get();
     }
 
-    public function findLastInvoice($partnerId)
+    public function findLastInvoice($id)
     {
-        return $this->invoice->where('partner_unique_id', $partnerId)->latest()->paginate(10);
+        return $this->invoice->where('partner_id', $id)->latest()->paginate(10);
     }
 
 }

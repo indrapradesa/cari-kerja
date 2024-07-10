@@ -21,7 +21,13 @@ class PartnerService
 
     public function update($request, $partnerId)
     {
-        $colData = collect($request);
+        $findPartner = $this->partnerInterface->find($partnerId);
+        $colData = collect($request)->except('email', '_token', '_method');
+
+        if($request['email'] != $findPartner->employer->email){
+            $data['email'] = $request['email'];
+            $this->partnerInterface->updateUser($data, $findPartner->employer_id);
+        }
 
         return $this->partnerInterface->update($colData->all(), $partnerId);
     }
