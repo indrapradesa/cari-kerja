@@ -22,6 +22,11 @@ class PartnerRepository implements PartnerInterface
         return $this->partner->latest()->filter(request(['search']))->paginate(25);
     }
 
+    public function partnerActive()
+    {
+        return $this->partner->where('status', 'active')->get();
+    }
+
     public function store($request)
     {
         return $this->partner->create($request);

@@ -39,8 +39,10 @@
             </button>
             <ul id="dropdown-example" class="{{ Request::is('admin/packages*') || Request::is('admin/categories*') ? '' : 'hidden' }} px-5 py-2 space-y-2">
             {{-- <ul id="dropdown-example" class="{{ Request::is('operationals/tiketing-psb*') ||  Request::is('operationals/work-orders*') ? '' : 'hidden' }} py-2 space-y-2"> --}}
-                  <li>
-                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Data Loker</a>
+                  <li class="{{ Request::is('admin/loker-partners*') ? 'text-white bg-blue-600 dark:bg-purple-700 rounded-lg' : 'text-black' }}">
+                    <a href="{{ route('admin.loker-partners.index')  }}" class="flex items-center w-full p-2 text-gray-900 rounded-lg transition duration-75 pl-11 group dark:text-white hover:bg-blue-800 dark:hover:bg-purple-800">
+                        <span class="flex-1 text-black whitespace-nowrap">Data Loker</span>
+                     </a>
                   </li>
                   <li class="{{ Request::is('admin/categories*') ? 'text-white bg-blue-600 dark:bg-purple-700 rounded-lg' : 'text-black' }}">
                     <a href="{{ route('admin.categories.index')  }}" class="flex items-center w-full p-2 text-gray-900 rounded-lg transition duration-75 pl-11 group dark:text-white hover:bg-blue-800 dark:hover:bg-purple-800">

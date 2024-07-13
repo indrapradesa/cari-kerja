@@ -35,4 +35,14 @@ class Partner extends Model
     {
         return $this->hasMany(Invoice::class, 'partner_id', 'id');
     }
+
+    public function jobs() :HasMany
+    {
+        return $this->hasMany(CompanyJob::class, 'partner_id', 'id');
+    }
+
+    public function account()
+    {
+        return $this->belongsTo(User::class, 'employeer_id', 'id');
+    }
 }

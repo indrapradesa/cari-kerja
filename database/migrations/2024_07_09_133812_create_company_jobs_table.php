@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('date_posted')->nullable();
             $table->date('date_closing')->nullable();
             $table->boolean('is_open')->default(false);
+            $table->boolean('is_admin')->default(false);
             $table->foreignId('partner_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id');
             $table->softDeletes();
