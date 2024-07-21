@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class, 'employeer_id', 'id');
+    }
 }

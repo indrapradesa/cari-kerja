@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CompanyJobController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ServicePackageController;
@@ -17,6 +18,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/{partnerId}/show', 'show')->name('show');
         Route::get('/{partnerId}/edit', 'edit')->name('edit');
         Route::patch('/{partnerId}/update-data', 'update')->name('update');
+    });
+
+    Route::prefix('loker-partners')->name('loker-partners.')->controller(CompanyJobController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::patch('/{id}/update', 'update')->name('update');
+        Route::patch('/{id}/update-status', 'updateStatus')->name('updateStatus');
+        Route::get('/{id}/show', 'show')->name('show');
     });
 
     Route::prefix('categories')->name('categories.')->controller(JobCategoryController::class)->group(function () {
