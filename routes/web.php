@@ -7,7 +7,10 @@ use App\Http\Controllers\Admin\ServicePackageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('layouts.dashboard');
+    return view('layouts.main');
+});
+Route::get('/login', function () {
+    return view('login');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
