@@ -46,4 +46,13 @@ class JobCategoryController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
+    public function delete($id)
+    {
+        try {
+
+        } catch (\Exception $e) {
+
+        }
+    }
 }
