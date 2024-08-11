@@ -15,7 +15,16 @@
     @include('partials.dashboard-navbar')
 
     {{-- sidebar --}}
-    @include('partials.sidebar.admin-sidebar')
+    @switch(auth()->user()->occupation)
+        @case('super_admin')
+            @include('partials.sidebar.admin-sidebar')
+            @break
+        @case('partner')
+            @include('partials.sidebar.partner-sidebar')
+            @break
+        @default
+
+    @endswitch
 
     {{-- main --}}
     <div class="p-4 sm:ml-64 bg-slate-100 h-screen">

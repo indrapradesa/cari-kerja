@@ -4,16 +4,17 @@ use App\Http\Controllers\Admin\CompanyJobController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ServicePackageController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('layouts.main');
 });
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'occupation:super_admin'])->group(function () {
     Route::prefix('partners')->name('partners.')->controller(PartnerController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create-new-partner', 'create')->name('create');
@@ -49,5 +50,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/update-status', 'updateStatus')->name('updateStatus');
         Route::delete('/{id}/delete', 'delete')->name('delete');
     });
+});
+
+Route::prefix('partners')->name('partners.')->middleware(['auth', 'occupation:partner'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('partner.index');
+    })->name('dashboard');
+});
+
+Route::prefix('job-sekkers')->name('job-sekkers.')->middleware(['auth', 'occupation:job_sekker'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('job-seeker.index');
+    })->name('dashboard');
 });
 
