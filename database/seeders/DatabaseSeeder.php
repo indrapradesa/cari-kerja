@@ -28,18 +28,21 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'Super Admin',
+            'occupation' => 'super-admin',
             'email' => 'super@admin.com',
             'password' => bcrypt('password')
         ]);
 
         User::create([
             'name' => 'Test',
+            'occupation' => 'company',
             'email' => 'test.company@example.com',
             'password' => bcrypt('password')
         ]);
 
         User::create([
             'name' => 'Test Again',
+            'occupation' => 'job-sekker',
             'email' => 'test.company.again@example.com',
             'password' => bcrypt('password')
         ]);
