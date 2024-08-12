@@ -26,6 +26,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        // $this->call([
+        //     JobSeekerSeeder::class,
+        // ]);
+
         User::create([
             'name' => 'Super Admin',
             'occupation' => 'super-admin',

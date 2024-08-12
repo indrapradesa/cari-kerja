@@ -31,6 +31,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreignId('employer_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('company_job_id')->references('id')->on('candidate_recomendations')->onDelete('cascade');
         });
     }
 

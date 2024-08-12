@@ -43,6 +43,6 @@ class Partner extends Model
 
     public function account()
     {
-        return $this->belongsTo(User::class, 'employeer_id', 'id');
+        return $this->belongsTo(User::class, 'employeer_id', 'partner_uniques');
     }
 }

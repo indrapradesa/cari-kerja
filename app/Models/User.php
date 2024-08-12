@@ -49,6 +49,6 @@ class User extends Authenticatable
 
     public function partner()
     {
-        return $this->belongsTo(Partner::class, 'employeer_id', 'id');
+        return $this->belongsTo(Partner::class, 'employeer_id', 'partner_uniques');
     }
 }

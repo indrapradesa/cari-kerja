@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ServicePackageController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Partners\JobAplicantController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -54,8 +55,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'occupation:super_ad
 
 Route::prefix('partners')->name('partners.')->middleware(['auth', 'occupation:partner'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('partner.index');
+        return view('partners.index');
     })->name('dashboard');
+    Route::prefix('job-aplicants')->name('jobAplicants.')->controller(JobAplicantController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/create-job', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::patch('/{id}/update', 'update')->name('update');
+        Route::patch('/{id}/update-status', 'updateStatus')->name('updateStatus');
+        Route::get('/{id}/show', 'show')->name('show');
+        Route::delete('/{id}/delete', 'destroy')->name('destroy');
+    });
 });
 
 Route::prefix('job-sekkers')->name('job-sekkers.')->middleware(['auth', 'occupation:job_sekker'])->group(function () {

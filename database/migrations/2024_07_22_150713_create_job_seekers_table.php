@@ -21,9 +21,10 @@ return new class extends Migration
             $table->string('domicile_address');
             $table->string('phone_number');
             $table->boolean('is_collage');
-            $table->string('neme_education');
-            $table->string('majoring_in_edication');
+            $table->string('name_education');
+            $table->string('majoring_in_education');
             $table->string('graduation_year');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
