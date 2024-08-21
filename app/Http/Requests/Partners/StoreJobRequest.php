@@ -32,7 +32,8 @@ class StoreJobRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+
+        $rules = [
             'job_title' => ['required', 'string', 'max:100'],
             'type_job' => ['required', 'in:WFH,WFO,Hybrid'],
             'category_id' => ['required', 'exists:categories,id'],
@@ -40,8 +41,14 @@ class StoreJobRequest extends FormRequest
             'date_posted' => ['required', 'date_format:Y-m-d'],
             'date_closing' => ['required', 'date_format:Y-m-d'],
             'salary_min' => ['required', 'numeric'],
-            'salary_max' => ['sometimes', 'numeric'],
+            // 'salary_max' => ['sometimes', 'numeric'],
             'job_description' => ['required', 'string'],
         ];
+
+        if ($this->input('salary_max') != null) {
+            $rules['salary_max'] = ['required', 'numeric'];
+        }
+
+        return $rules;
     }
 }

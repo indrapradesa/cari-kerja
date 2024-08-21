@@ -21,9 +21,8 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'employeer_id' => 0, // or you can create a partner instance and get its id
             'name' => $this->faker->name,
-            'occupation' => $this->faker->jobTitle,
+            'occupation' => 'job-sekker',
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => bcrypt('password'), // default password

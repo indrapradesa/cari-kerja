@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CandidateController;
 use App\Http\Controllers\Admin\CompanyJobController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\PartnerController;
@@ -15,7 +16,7 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'occupation:super_admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'occupation:super-admin'])->group(function () {
     Route::prefix('partners')->name('partners.')->controller(PartnerController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create-new-partner', 'create')->name('create');
@@ -51,6 +52,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'occupation:super_ad
         Route::post('/update-status', 'updateStatus')->name('updateStatus');
         Route::delete('/{id}/delete', 'delete')->name('delete');
     });
+
+    Route::prefix('candidates')->name('candidates.')->controller(CandidateController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}/find', 'show')->name('show');
+    });
 });
 
 Route::prefix('partners')->name('partners.')->middleware(['auth', 'occupation:partner'])->group(function () {
@@ -69,7 +75,7 @@ Route::prefix('partners')->name('partners.')->middleware(['auth', 'occupation:pa
     });
 });
 
-Route::prefix('job-sekkers')->name('job-sekkers.')->middleware(['auth', 'occupation:job_sekker'])->group(function () {
+Route::prefix('job-sekkers')->name('job-sekkers.')->middleware(['auth', 'occupation:job-sekker'])->group(function () {
     Route::get('/dashboard', function () {
         return view('job-seeker.index');
     })->name('dashboard');

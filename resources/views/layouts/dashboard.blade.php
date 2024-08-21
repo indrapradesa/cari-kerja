@@ -18,11 +18,14 @@
 
     {{-- sidebar --}}
     @switch(auth()->user()->occupation)
-        @case('super_admin')
+        @case('super-admin')
             @include('partials.sidebar.admin-sidebar')
             @break
         @case('partner')
             @include('partials.sidebar.partner-sidebar')
+            @break
+        @case('job-sekker')
+            @include('partials.sidebar.job-seeker-sidebar')
             @break
         @default
 

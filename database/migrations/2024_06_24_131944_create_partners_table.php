@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
             $table->foreignId('package_id');
+            $table->foreignId('employeer_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('partner_uniques', length: 50)->unique();
             $table->string('company_name', length: 100);
             $table->string('slug', length: 100);
             $table->enum('type_partner', ['umkm', 'company']);
             $table->string('phone_number', length: 13)->unique();
-            // $table->string('email', length: 100)->unique();
             $table->string('address', length: 255);
             $table->string('link_instagram', length: 255)->nullable()->unique();
             $table->string('link_facebook', length: 255)->nullable()->unique();
@@ -29,9 +29,6 @@ return new class extends Migration
             $table->enum('status',['active', 'suspend', 'temind'])->default('active');
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreignId('employer_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('company_job_id')->references('id')->on('candidate_recomendations')->onDelete('cascade');
         });
     }
 

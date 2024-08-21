@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('candidate_recommendations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_job_id');
-            $table->foreignId('candidate_id');
+            $table->foreignId('company_job_id')->references('id')->on('company_jobs')->onDelete('cascade');
+            $table->foreignId('job_seeker_id')->references('id')->on('job_seekers')->onDelete('cascade');
+            $table->string('description')->nullable();
             $table->boolean('is_hired')->default(false);
             $table->softDeletes();
             $table->timestamps();

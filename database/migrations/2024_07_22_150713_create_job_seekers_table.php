@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('job_seekers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('name');
             $table->date('date_of_birth')->date_format('Y-m-d');
             $table->enum('gender', ['laki-laki', 'perempuan']);

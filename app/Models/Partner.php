@@ -21,9 +21,9 @@ class Partner extends Model
 
     }
 
-    public function employer()
+    public function employeer()
     {
-        return $this->belongsTo(User::class, 'employer_id');
+        return $this->belongsTo(User::class, 'employeer_id', 'id');
     }
 
     public function package() :BelongsTo

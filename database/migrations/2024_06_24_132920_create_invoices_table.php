@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('partner_id');
             $table->string('nomor_reff', length: 100)->unique();
             $table->string('channel', length: 100)->nullable();
             $table->string('photo_invoice', length: 255)->nullable();
@@ -21,7 +22,8 @@ return new class extends Migration
             $table->double('amount');
             $table->enum('status', ['unpaid', 'paid', 'cancelled'])->default('unpaid');
             $table->timestamps();
-            $table->foreignId('partner_id')->references('id')->on('partners')->onDelete('cascade');
+            // $table->foreignId('partner_id')->references('id')->on('partners')->onDelete('cascade');
+            // $table->foreignId('partner_id')->constrained()->onDelete('cascade');
         });
     }
 
