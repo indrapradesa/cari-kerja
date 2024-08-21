@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="/css/skeleton.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <title>Document</title>
+    <!-- Include SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     {{-- navbar --}}
@@ -16,11 +18,14 @@
 
     {{-- sidebar --}}
     @switch(auth()->user()->occupation)
-        @case('super_admin')
+        @case('super-admin')
             @include('partials.sidebar.admin-sidebar')
             @break
         @case('partner')
             @include('partials.sidebar.partner-sidebar')
+            @break
+        @case('job-sekker')
+            @include('partials.sidebar.job-seeker-sidebar')
             @break
         @default
 
@@ -33,10 +38,9 @@
         </div>
      </div>
 
+     @stack('scripts')
      <!-- Include jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"></script>
-    <!-- Include SweetAlert JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script>
 
     @yield('scripts')

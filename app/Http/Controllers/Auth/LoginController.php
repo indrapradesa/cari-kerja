@@ -27,12 +27,12 @@ class LoginController extends Controller
 
             // Check user role or level
             switch ($user->occupation) {
-                case 'super_admin':
+                case 'super-admin':
                     return redirect()->route('admin.partners.index');
                 case 'partner':
                     return redirect()->route('partners.dashboard');
-                case 'job_seeker':
-                    return redirect()->route('job-seekers.dashboard');
+                case 'job-seeker':
+                    return redirect()->route('job-sekkers.dashboard');
                 default:
                     // If no role is matched, redirect to a default route
                     return redirect()->route('home');

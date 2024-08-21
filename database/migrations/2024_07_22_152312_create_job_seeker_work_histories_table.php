@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_sekker_work_histories', function (Blueprint $table) {
+        Schema::create('job_seeker_work_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_sekker_id');
+            $table->foreignId('job_seeker_id');
             $table->string('company_name');
             $table->string('job_title');
             $table->date('start_date')->date_format('Y-m-d');

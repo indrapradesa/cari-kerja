@@ -26,6 +26,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        // $this->call([
+        //     JobSeekerSeeder::class,
+        // ]);
+
         User::create([
             'name' => 'Super Admin',
             'occupation' => 'super-admin',
@@ -35,7 +39,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'Test',
-            'occupation' => 'company',
+            'occupation' => 'partner',
             'email' => 'test.company@example.com',
             'password' => bcrypt('password')
         ]);
@@ -50,7 +54,7 @@ class DatabaseSeeder extends Seeder
         Partner::create([
             'package_id' => 1,
             'partner_uniques' => 123,
-            'employer_id' => 2,
+            'employeer_id' => 2,
             'company_name' => 'Test Company',
             'slug' => 'test_company',
             'type_partner' => 'umkm',
@@ -62,7 +66,7 @@ class DatabaseSeeder extends Seeder
         Partner::create([
             'package_id' => 1,
             'partner_uniques' => 1231234,
-            'employer_id' => 3,
+            'employeer_id' => 3,
             'company_name' => 'Test Company Again',
             'slug' => 'test_company-again',
             'type_partner' => 'umkm',
