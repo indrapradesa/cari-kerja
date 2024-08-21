@@ -12,14 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->increments('id_invoice');
+            $table->id();
             $table->foreignId('partner_id');
             $table->string('nomor_reff', length: 100)->unique();
-            $table->string('channel', length: 100);
-            $table->string('photo_invoice', length: 255);
+            $table->string('channel', length: 100)->nullable();
+            $table->string('photo_invoice', length: 255)->nullable();
+            $table->date('periode');
+            $table->date('paid_date')->nullable();
             $table->double('amount');
-            $table->enum('status', ['unpaid', 'paid', 'cancelled']);
+            $table->enum('status', ['unpaid', 'paid', 'cancelled'])->default('unpaid');
             $table->timestamps();
+            // $table->foreignId('partner_id')->references('id')->on('partners')->onDelete('cascade');
+            // $table->foreignId('partner_id')->constrained()->onDelete('cascade');
         });
     }
 

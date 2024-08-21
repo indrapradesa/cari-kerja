@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category_job_vacancies', function (Blueprint $table) {
-            $table->increments('id_category');
-            $table->string('name_category', length: 100);
-            $table->string('slug', length: 100);
+        Schema::create('job_candidates', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('candidate_id');
+            $table->foreignId('company_job_id');
+            $table->boolean('is_hired');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category_job_vacancies');
+        Schema::dropIfExists('job_candidates');
     }
 };
