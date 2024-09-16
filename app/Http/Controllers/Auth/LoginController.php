@@ -35,7 +35,7 @@ class LoginController extends Controller
                     return redirect()->route('job-sekkers.dashboard');
                 default:
                     // If no role is matched, redirect to a default route
-                    return redirect()->route('home');
+                    return redirect('/');
             }
         }
 

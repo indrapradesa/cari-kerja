@@ -6,12 +6,24 @@ use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ServicePackageController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\Partners\JobAplicantController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('layouts.main');
 });
+
+Route::prefix('jobs')->name('jobs.')->controller(JobController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/{id}/show', 'show')->name('show');
+});
+
+Route::prefix('blogs')->name('blogs.')->controller(BlogController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+});
+
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
